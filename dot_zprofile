@@ -1,0 +1,10 @@
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+eval $(/opt/homebrew/bin/brew shellenv)
+
+# Created by `pipx` on 2025-08-20 08:43:38
+export PATH="$PATH:/Users/user/.local/bin"
