@@ -134,3 +134,6 @@ export PATH="$PATH:/Users/user/.lmstudio/bin"
 
 # opencode
 export PATH=/Users/user/.opencode/bin:$PATH
+
+# Terminal type for remote servers
+export TERM=xterm-256color
