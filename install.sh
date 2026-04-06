@@ -13,6 +13,9 @@ if ! command -v chezmoi &> /dev/null; then
     sh -c "$(curl -fsSL https://get.chezmoi.io)"
 fi
 
+# Add chezmoi to PATH (installed to ~/.local/bin)
+export PATH="$HOME/.local/bin:$PATH"
+
 # Clone or update repo
 if [ -d "$SOURCE_DIR" ] && [ -d "$SOURCE_DIR/.git" ]; then
     echo "Updating $SOURCE_DIR..."
