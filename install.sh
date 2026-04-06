@@ -28,6 +28,7 @@ fi
 
 # Initialize chezmoi
 echo "Initializing chezmoi..."
+mkdir -p ~/.local/share/chezmoi
 chezmoi init --source "$SOURCE_DIR"
 
 # Apply configuration
