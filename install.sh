@@ -33,7 +33,7 @@ export PATH="$HOME/.local/bin:$PATH"
 # Clone or update repo
 if [ -d "$SOURCE_DIR" ] && [ -d "$SOURCE_DIR/.git" ]; then
     echo "Updating $SOURCE_DIR..."
-    cd "$SOURCE_DIR" && git pull
+    cd "$SOURCE_DIR" && git pull --rebase
 elif [ -d "$SOURCE_DIR" ]; then
     echo "Directory exists but is not a git repo. Removing..."
     rm -rf "$SOURCE_DIR"
