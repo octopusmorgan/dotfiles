@@ -3,14 +3,28 @@
 set -e
 
 REPO_URL="${1:-https://github.com/octopusmorgan/dotfiles.git}"
-SOURCE_DIR="${2:-$HOME/dotfiles}"
+SOURCE_DIR="${2:-$HOME/.dotfiles}"
 
 echo "=== Installing dotfiles from $REPO_URL ==="
+
+# Check requirements
+check_requirement() {
+    if ! command -v "$1" &> /dev/null; then
+        echo "ERROR: $1 is required but not installed."
+        echo "Please install $1 first."
+        exit 1
+    fi
+}
+
+echo "Checking requirements..."
+check_requirement curl
+check_requirement git
+check_requirement zsh
 
 # Install chezmoi if not present
 if ! command -v chezmoi &> /dev/null; then
     echo "Installing chezmoi..."
-    sh -c "$(curl -fsSL https://get.chezmoi.io)"
+    sh -c "$(curl -fsSL https://get.chezmoi.io)" -- -b "$HOME/.local/bin"
 fi
 
 # Add chezmoi to PATH (installed to ~/.local/bin)
