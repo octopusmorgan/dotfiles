@@ -51,6 +51,6 @@ ln -sf "$SOURCE_DIR" ~/.local/share/chezmoi
 
 # Apply configuration
 echo "Applying configuration..."
-chezmoi apply
+chezmoi apply --force
 
 echo "=== Done! ==="
