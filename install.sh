@@ -43,14 +43,31 @@ else
     git clone "$REPO_URL" "$SOURCE_DIR"
 fi
 
-# Initialize chezmoi with symlink (simpler than chezmoi init)
-echo "Initializing chezmoi..."
+# Link dotfiles directly (simpler than chezmoi apply)
+echo "Linking dotfiles..."
 mkdir -p ~/.local/share
 rm -rf ~/.local/share/chezmoi
 ln -sf "$SOURCE_DIR" ~/.local/share/chezmoi
 
-# Apply configuration (--no-tty avoids TTY prompts)
-echo "Applying configuration..."
-chezmoi apply --no-tty --force
+# Create symlinks for config files
+ln -sf "$SOURCE_DIR/dot_zshrc" "$HOME/.zshrc"
+ln -sf "$SOURCE_DIR/dot_zprofile" "$HOME/.zprofile"
+
+# Link .config files if they exist
+if [ -d "$SOURCE_DIR/dot_config" ]; then
+    mkdir -p "$HOME/.config"
+    for config_file in "$SOURCE_DIR/dot_config"/*; do
+        if [ -f "$config_file" ]; then
+            filename=$(basename "$config_file")
+            ln -sf "$config_file" "$HOME/.config/$filename"
+        elif [ -d "$config_file" ]; then
+            dirname=$(basename "$config_file")
+            mkdir -p "$HOME/.config/$dirname"
+            for subfile in "$config_file"/*; do
+                [ -f "$subfile" ] && ln -sf "$subfile" "$HOME/.config/$dirname/"
+            done
+        fi
+    done
+fi
 
 echo "=== Done! ==="
