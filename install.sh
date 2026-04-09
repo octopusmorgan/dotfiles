@@ -29,10 +29,11 @@ else
     git clone "$REPO_URL" "$SOURCE_DIR"
 fi
 
-# Initialize chezmoi
+# Initialize chezmoi with symlink (simpler than chezmoi init)
 echo "Initializing chezmoi..."
-mkdir -p ~/.local/share/chezmoi
-chezmoi init --source "$SOURCE_DIR"
+mkdir -p ~/.local/share
+rm -rf ~/.local/share/chezmoi
+ln -sf "$SOURCE_DIR" ~/.local/share/chezmoi
 
 # Apply configuration
 echo "Applying configuration..."
