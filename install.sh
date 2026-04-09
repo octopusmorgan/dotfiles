@@ -49,8 +49,8 @@ mkdir -p ~/.local/share
 rm -rf ~/.local/share/chezmoi
 ln -sf "$SOURCE_DIR" ~/.local/share/chezmoi
 
-# Apply configuration (skip README which is just documentation)
+# Apply configuration (--no-tty avoids TTY prompts)
 echo "Applying configuration..."
-chezmoi apply --force --exclude=README*
+chezmoi apply --no-tty --force
 
 echo "=== Done! ==="
